@@ -18,7 +18,7 @@ import android.widget.SeekBar;
 
 public class ComboSeekBar extends SeekBar {
 	private CustomThumbDrawable mThumb;
-	private List<Dot> mDots = new ArrayList<Dot>();
+	private List<Dot> mDots = new ArrayList<>();
 	private OnItemClickListener mItemClickListener;
 	private Dot prevSelected = null;
 	private boolean isSelected = false;
@@ -119,6 +119,9 @@ public class ComboSeekBar extends SeekBar {
 						Rect bounds = mThumb.copyBounds();
 						bounds.right = dot.mX;
 						bounds.left = dot.mX;
+                        int desiredHeight = getProgressDrawable().getIntrinsicHeight() + (bounds.height() / 2);
+                        bounds.top = desiredHeight - (bounds.height());
+                        bounds.bottom = desiredHeight;
 						mThumb.setBounds(bounds);
 						break;
 					}
@@ -173,7 +176,7 @@ public class ComboSeekBar extends SeekBar {
 		int dh = 0;
 		if (d != null) {
 			dw = d.getIntrinsicWidth();
-			dh = Math.max(thumbHeight, d.getIntrinsicHeight());
+			dh = getHeight();
 		}
 
 		dw += getPaddingLeft() + getPaddingRight();

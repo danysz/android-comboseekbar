@@ -24,7 +24,7 @@ public class CustomThumbDrawable extends Drawable {
 
 	public CustomThumbDrawable(Context context, int color) {
 		mContext = context;
-		mRadius = toPix(15);
+		mRadius = toPix(12);
 		setColor(color);
 	}
 
@@ -51,9 +51,7 @@ public class CustomThumbDrawable extends Drawable {
 
 	@Override
 	public final void draw(Canvas canvas) {
-		int height = this.getBounds().centerY();
-		int width = this.getBounds().centerX();
-		canvas.drawCircle(width + mRadius, height, mRadius, circlePaint);
+		canvas.drawCircle(this.getBounds().centerX() + mRadius, this.getBounds().centerY(), mRadius, circlePaint);
 	}
 
 	@Override

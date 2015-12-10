@@ -5,13 +5,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.infteh.comboseekbar.ComboSeekBar;
+
+import java.util.Arrays;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private ComboSeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        seekBar = (ComboSeekBar) findViewById(R.id.seek_bar);
+
+        List<String> seekBarStep = Arrays.asList("All", "1", "5", "10", "20");
+        seekBar.setAdapter(seekBarStep);
+        seekBar.setColor(R.color.main_color);
+        seekBar.setSelection(3);
     }
 
 

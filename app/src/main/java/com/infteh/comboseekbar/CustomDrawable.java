@@ -76,7 +76,7 @@ public class CustomDrawable extends Drawable {
 
 		mTextHeight = textBounds.height();
 		mDotRadius = toPix(5);
-		mTextMargin = toPix(3);
+		mTextMargin = toPix(20);
 	}
 
 	private float toPix(int size) {
@@ -102,13 +102,13 @@ public class CustomDrawable extends Drawable {
 	@Override
 	public final void draw(Canvas canvas) {
 		// Log.d("--- draw:" + (getBounds().right - getBounds().left));
-		int height = this.getIntrinsicHeight() / 2;
+		int height = this.getIntrinsicHeight();
 		if (mDots.size() == 0) {
 			canvas.drawLine(0, height, getBounds().right, height, unselectLinePaint);
 			return;
 		}
 		for (Dot dot : mDots) {
-			drawText(canvas, dot, dot.mX, height);
+			drawText(canvas, dot, dot.mX, height / 2);
 			if (dot.isSelected) {
 				canvas.drawLine(mDots.get(0).mX, height, dot.mX, height, selectLinePaint);
 				canvas.drawLine(dot.mX, height, mDots.get(mDots.size() - 1).mX, height, unselectLinePaint);
@@ -161,6 +161,7 @@ public class CustomDrawable extends Drawable {
 
 	@Override
 	public final int getIntrinsicHeight() {
+
 		if (mIsMultiline) {
 			return (int) (selectLinePaint.getStrokeWidth() + mDotRadius + (mTextHeight) * 2  + mTextMargin);
 		} else {
